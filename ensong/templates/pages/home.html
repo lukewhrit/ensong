@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content%}
+{% block hero %}
+<div class="px-4 pt-5 my-3 text-center border-bottom">
+  <h1 class="display-4 fw-bold text-body-emphasis">Ensong</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      We aim to be the last music reviewing site you'll ever need. We combine
+      the largest and most accurate music database available with a modern
+      interface to make ourselves the best possible site for rating and
+      reviewing music.
+    </p>
+
+    {% if not user.is_authenticated %}
+    <div class="d-grid d-sm-flex justify-content-sm-center mb-5">
+      <a
+        type="button"
+        class="btn btn-primary btn-lg px-4 me-sm-3"
+        href="{% url 'account_login' %}"
+      >
+        Log In
+      </a>
+      <a
+        type="button"
+        class="btn btn-outline-secondary btn-lg px-4"
+        href="{% url 'account_signup' %}"
+      >
+        Sign Up
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  <div class="overflow-hidden" style="max-height: 30vh">
+    <div class="px-5">
+      {% load static %}
+      <img
+        src="{% static 'images/album-collage.png' %}"
+        class="img-fluid rounded-3 shadow-lg mb-4"
+        alt="A graphic depicting various popular albums"
+        loading="lazy"
+        width="700"
+        height="500"
+      />
+    </div>
+  </div>
+</div>
+{% endblock hero %} {% block features %}
+<div class="container">
+  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="col d-flex align-items-start">
+      <p class="py-2 px-3 rounded bg-body-secondary text-center fs-5 me-3">
+        📚
+      </p>
+      <div>
+        <h3 class="fs-2">Colossal library</h3>
+        <p>
+          Backed by <a href="https://musicbrainz.org/">MusicBrainz</a>, our
+          library contains hundreds of thousands of songs, albums, artists, and
+          more. MusicBrainz is one of the most reliable and accurate music
+          databases out there.
+        </p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <p class="py-2 px-3 rounded bg-body-secondary text-center fs-5 me-3">
+        🌱
+      </p>
+      <div>
+        <h3 class="fs-2">Intuitive and modern</h3>
+        <p>
+          Unlike some of our competitors, Ensong doesn't have a user interface
+          that looks straight out of 2005. Our simplistic UI is designed to
+          easily usable and accessible for everyone.
+        </p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <p class="py-2 px-3 rounded bg-body-secondary text-center fs-5 me-3">
+        💸
+      </p>
+      <div>
+        <h3 class="fs-2">Free, forever</h3>
+        <p>
+          Ensong is completely free and open source, and always will be.
+          Developed entirely by members of our community, the entire source code
+          is also available on
+          <a href="https://github.com/lukewhrit/ensong">Github</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock features %}
+{% endblock content %}
