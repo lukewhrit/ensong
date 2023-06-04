@@ -4,19 +4,19 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
-from .views import home, music, charts, members
+from .views import home, members
 
 urlpatterns = [
     path("", home, name="home"),
     path("accounts/", include("allauth.urls")),
-    path("music/", music, name="music"),
-    path("charts/", charts, name="charts"),
-    path("members/", members, name="members"),    # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("ensong.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Pages
+    path("members/", members, name="members"),
+    # Music
+    path("music/", include("ensong.music.urls", namespace="music"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development

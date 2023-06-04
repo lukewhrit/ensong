@@ -72,21 +72,16 @@
             </li>
             <li>
               <a
-                href="{% url 'members' %}"
-                class="nav-link px-2 {{ members_page }}"
-                >Members</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'music' %}"
+                href="{% url 'music:index' %}"
                 class="nav-link px-2 {{ music_page }}"
                 >Music</a
               >
             </li>
             <li>
-              <a href="{% url 'charts' %}" class="nav-link px-2 {{ charts_page }}"
-                >Charts and Lists</a
+              <a
+                href="{% url 'members' %}"
+                class="nav-link px-2 {{ members_page }}"
+                >Members</a
               >
             </li>
           </ul>
@@ -103,7 +98,7 @@
             </div>
           </form>
 
-          {% if user.is_authenticated %}
+          {% if request.user.is_authenticated %}
           <div class="dropdown text-end">
             <a
               href="#"
@@ -112,7 +107,7 @@
               aria-expanded="false"
             >
               <img
-                src="https://github.com/{{ user.username }}.png"
+                src="{{ request.user.avatar.url }}"
                 alt="mdo"
                 class="rounded-circle"
                 width="32"
@@ -120,10 +115,10 @@
               />
             </a>
             <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="/users/{{ user.username }}">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Library</a></li>
-              <li><a class="dropdown-item" href="">Lists</a></li>
-              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="/users/{{ request.user }}">Profile</a></li>
+              <li><a class="dropdown-item" href="/users/{{ request.user }}#reviews">Library</a></li>
+              <li><a class="dropdown-item" href="/users/{{ request.user }}#lists">Lists</a></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li>
                 <a class="dropdown-item" href="{% url 'account_logout' %}"
@@ -161,7 +156,8 @@
           aria-label="Close"
         ></button>
       </div>
-      {% endfor %} {% endif %} {% block content %} {% endblock content %}
+      {% endfor %} {% endif %}
+      <main>{% block content %} {% endblock content %}</main>
       {% block footer %}
       <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
