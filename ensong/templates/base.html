@@ -37,11 +37,13 @@
   </head>
 
   <body>
+    <!-- Navbar -->
     <header class="p-3 mb-3 border-bottom">
       <div class="container">
         <div
           class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
         >
+          <!-- Brand -->
           <a
             href="{% url 'home' %}"
             class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
@@ -62,6 +64,7 @@
             </svg>
           </a>
 
+          <!-- Links -->
           <ul
             class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
           >
@@ -86,6 +89,7 @@
             </li>
           </ul>
 
+          <!-- Search -->
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">🔎</span>
@@ -98,6 +102,7 @@
             </div>
           </form>
 
+          <!-- User buttons -->
           {% if request.user.is_authenticated %}
           <div class="dropdown text-end">
             <a
@@ -143,7 +148,9 @@
       </div>
     </header>
 
+    <!-- Container -->
     <div class="container">
+      <!-- Notifications -->
       {% if messages %} {% for message in messages %}
       <div
         class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}"
@@ -157,7 +164,9 @@
         ></button>
       </div>
       {% endfor %} {% endif %}
+      <!-- Content -->
       <main>{% block content %} {% endblock content %}</main>
+      <!-- Footer -->
       {% block footer %}
       <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -167,31 +176,25 @@
             >
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Members</a>
+            <a href="{% url 'members' %}" class="nav-link px-2 text-body-secondary">Members</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Music</a>
+            <a href="{% url 'music:index' %}" class="nav-link px-2 text-body-secondary">Music</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary"
-              >Charts and Lists</a
-            >
+            <a href="{% url 'privacy' %}" class="nav-link px-2 text-body-secondary">Privacy</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Privacy</a>
+            <a href="{% url 'tos' %}" class="nav-link px-2 text-body-secondary">Terms</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">Terms</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+            <a href="{% url 'faqs' %}" class="nav-link px-2 text-body-secondary">FAQs</a>
           </li>
         </ul>
         <p class="text-center text-body-secondary">© 2023 Luke Whritenour</p>
       </footer>
       {% endblock footer %}
     </div>
-    <!-- /container -->
 
     {% block modal %}{% endblock modal %}
   </body>

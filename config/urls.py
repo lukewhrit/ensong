@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
-from .views import home, members
+from .views import home, members, faqs, privacy, tos
 
 urlpatterns = [
     path("", home, name="home"),
@@ -14,6 +14,9 @@ urlpatterns = [
     path("users/", include("ensong.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Pages
+    path("tos/", tos, name="tos"),
+    path("faqs/", faqs, name="faqs"),
+    path("privacy/", privacy, name="privacy"),
     path("members/", members, name="members"),
     # Music
     path("music/", include("ensong.music.urls", namespace="music"))
