@@ -33,9 +33,6 @@ class UserSignupForm(SignupForm):
     Check UserSocialSignupForm for accounts created from social.
     """
 
-    name = forms.CharField(label=_("Username"), max_length=255, required=False)
-    about = forms.CharField(label=_("About"), max_length=800, required=False)
-
 
 class UserSocialSignupForm(SocialSignupForm):
     """

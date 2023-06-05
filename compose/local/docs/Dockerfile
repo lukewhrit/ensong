@@ -39,11 +39,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libpq-dev \
   # Translations dependencies
   gettext \
-  # Uncomment below lines to enable Sphinx output to latex and pdf
-  # texlive-latex-recommended \
-  # texlive-fonts-recommended \
-  # texlive-latex-extra \
-  # latexmk \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
