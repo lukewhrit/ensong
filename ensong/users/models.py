@@ -13,6 +13,7 @@ class User(AbstractUser):
 
     name = CharField(_("Name of User"), blank=True, max_length=255)
     avatar = ImageField(_("User Avatar"), upload_to="avatars", default="avatars/user-default.png")
+    about = CharField(_("About User"), blank=True, max_length=800)
 
     def get_absolute_url(self) -> str:
         """Get URL for user's detail view.

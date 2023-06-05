@@ -12,9 +12,9 @@ User = get_user_model()
 class UserAdmin(auth_admin.UserAdmin):
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
-    fieldsets = (
+    fieldsets = [
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email", "avatar")}),
+        (_("Personal info"), {"fields": ("name", "email", "avatar", "about")}),
         (
             _("Permissions"),
             {
@@ -28,6 +28,6 @@ class UserAdmin(auth_admin.UserAdmin):
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
-    )
+    ]
     list_display = ["username", "name", "is_superuser"]
     search_fields = ["name"]
