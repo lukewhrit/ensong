@@ -15,7 +15,7 @@ class Genre(models.Model):
 class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     name = models.CharField(_("Album name"), max_length=255)
-    mbid = models.UUIDField(_("MusicBrainz ID"), blank=True, max_length=36)
+    mbid = models.UUIDField(_("MusicBrainz ID"), max_length=36, primary_key=True, default=None)
     release_date = models.DateField(_("album release date"))
     genre = models.ManyToManyField(Genre)
 

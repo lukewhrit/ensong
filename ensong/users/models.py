@@ -11,9 +11,9 @@ class User(AbstractUser):
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
 
-    name = CharField(_("Name of User"), blank=True, max_length=255)
-    avatar = ImageField(_("User Avatar"), upload_to="avatars", default="avatars/user-default.png")
-    about = CharField(_("About User"), blank=True, max_length=800)
+    name = CharField(_("Name of User"), blank=True, max_length=255, editable=True)
+    avatar = ImageField(_("User Avatar"), upload_to="avatars", default="avatars/user-default.png", editable=True)
+    about = CharField(_("About User"), blank=True, max_length=800, editable=True)
 
     def get_absolute_url(self) -> str:
         """Get URL for user's detail view.
