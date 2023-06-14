@@ -21,6 +21,9 @@ class Album(models.Model):
     release_date = models.DateField(_("album release date"))
     genre = models.ManyToManyField(Genre)
 
+    def genres(self):
+        return "\n".join([genre.name for genre in self.genre.all()])
+
     def average_rating(self):
         return 3
 
