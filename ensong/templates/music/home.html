@@ -2,5 +2,20 @@
 {% block title %}Music{% endblock %}
 
 {% block content %}
-Music
+<div clas="container d-flex flex-column justify-content-center w-75">
+  <h1 class="text-center mb-3 fw-bolder">Albums</h1>
+  <div class="row">
+    {% for album in albums %}
+      <div class="col-sm-2">
+        <img
+          src="http://coverartarchive.org/release-group/{{ album.mbid }}/front-250"
+          class="img-fluid rounded mb-2"
+          loading="lazy"
+        >
+        <h5 class="mb-1 fw-bold"><a href="{% url 'music:album' album.mbid %}">{{ album.name }}</a></h5>
+        <p>{{ album.artist.name }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock content %}
