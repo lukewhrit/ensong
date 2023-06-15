@@ -31,7 +31,13 @@
       <section id="about">
         <h2 class="mb-3">About</h2>
 
-        <p>{{ object.about }}</p>
+        <p>
+          {% if object.about %}
+            {{ objet.about }}
+          {% else %}
+            No bio yet.
+          {% endif %}
+        </p>
       </section>
 
       <!-- Reviews -->
