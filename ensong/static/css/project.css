@@ -10,6 +10,14 @@
   display: none;
 }
 
+.long-truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .alert-error {
   color: #b94a48;
   background-color: #f2dede;
