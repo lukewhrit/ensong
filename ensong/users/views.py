@@ -2,9 +2,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
-from ensong.music.models import Review
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
+
+from ensong.music.models import Review
 
 User = get_user_model()
 
@@ -19,6 +20,7 @@ class UserDetailView(DetailView):
         context["reviews"] = Review.objects.filter(author=self.get_object())
 
         return context
+
 
 user_detail_view = UserDetailView.as_view()
 

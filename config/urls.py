@@ -4,7 +4,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views import defaults as default_views
-from .views import home, members, faqs, privacy, tos
+
+from .views import faqs, home, members, privacy, tos
 
 urlpatterns = [
     path("", home, name="home"),
@@ -19,7 +20,7 @@ urlpatterns = [
     path("privacy/", privacy, name="privacy"),
     path("members/", members, name="members"),
     # Music
-    path("music/", include("ensong.music.urls", namespace="music"))
+    path("music/", include("ensong.music.urls", namespace="music")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development

@@ -1,8 +1,10 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
-from ensong.users.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
+
+from ensong.users.models import User
+
 
 class Artist(models.Model):
     mbid = models.UUIDField(_("MusicBrainz ID"), primary_key=True, blank=False, max_length=36)
@@ -13,11 +15,13 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+
 class Genre(models.Model):
     name = models.CharField(_("genre name"), max_length=255)
 
     def __str__(self):
         return self.name
+
 
 class Album(models.Model):
     mbid = models.UUIDField(_("MusicBrainz ID"), primary_key=True, blank=False, max_length=36)
@@ -35,6 +39,7 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
