@@ -10,14 +10,14 @@ from django.views.generic import DetailView, RedirectView, UpdateView
 User = get_user_model()
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["reviews"] = Review.objects.filter(author=self.request.user)
+        context["reviews"] = Review.objects.filter(author=self.get_object())
 
         return context
 
