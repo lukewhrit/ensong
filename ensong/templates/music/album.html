@@ -17,7 +17,7 @@
       <div class="d-flex flex-column justify-content-center">
         <h2 class="mb-0">{{ album.name }}</h2>
         <p>By {{ album.artist.name }}</p>
-        <p>
+        <p class="genres">
           {% for genre in album.genres %}
             <span class="badge rounded-pill text-bg-secondary">{{ genre }}</span>
           {% endfor %}

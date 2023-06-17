@@ -3,7 +3,22 @@
 
 {% block content %}
 <div clas="container d-flex flex-column justify-content-center w-75">
-  <h1 class="text-center mb-3 fw-bolder">Albums</h1>
+  <div class="row">
+    <h1 class="text-center mb-3 fw-bolder">Albums</h1>
+  </div>
+  <div class="row justify-content-center mb-4">
+    <form class="col-sm-6 mx-auto" role="search">
+      <div class="input-group">
+        <span class="input-group-text">🔎</span>
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Find an album..."
+          aria-label="Search"
+        />
+      </div>
+    </form>
+  </div>
   <div class="row">
     {% for album in albums %}
       <div class="col-sm-2">

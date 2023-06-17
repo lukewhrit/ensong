@@ -32,11 +32,7 @@
         <h2 class="mb-3">About</h2>
 
         <p>
-          {% if object.about %}
-            {{ objet.about }}
-          {% else %}
-            No bio yet.
-          {% endif %}
+          {% firstof object.about "No bio yet" %}
         </p>
       </section>
 
@@ -62,7 +58,9 @@
                 <h2 class="mb-1 fw-bold">
                   <a href="{% url 'music:album' review.album.mbid %}">{{ review.album.name }}</a>
                 </h2>
-                <p class="fst-italic">{{ review.album.artist.name }}</p>
+                <p>
+                  By {{ review.album.artist.name }} • Posted {{ review.pub_date | naturalday }}
+                </p>
 
                 <p class="long-truncate" id="review-text">{{ review.content }}</p>
 
@@ -108,28 +106,28 @@
       <form>
         <label>Genres</label>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-          <label class="form-check-label" for="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" value="" id="indie-folk" checked>
+          <label class="form-check-label" for="indie-folk">
             Indie Folk
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
+          <input class="form-check-input" type="checkbox" value="" id="indie-pop" checked>
+          <label class="form-check-label" for="indie-pop">
             Indie Pop
           </label>
         </div>
 
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
+          <input class="form-check-input" type="checkbox" value="" id="indie-rock" checked>
+          <label class="form-check-label" for="indie-rock">
             Indie Rock
           </label>
         </div>
 
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-          <label class="form-check-label" for="flexCheckChecked">
+          <input class="form-check-input" type="checkbox" value="" id="singer-songwriter" checked>
+          <label class="form-check-label" for="singer-songwriter">
             Singer-Songwriter
           </label>
         </div>

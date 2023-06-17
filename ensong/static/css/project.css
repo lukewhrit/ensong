@@ -10,6 +10,10 @@
   display: none;
 }
 
+.genres {
+  max-width: 500px;
+}
+
 .long-truncate {
   display: -webkit-box;
   -webkit-box-orient: vertical;
