@@ -69,11 +69,15 @@
             <hr>
           {% endfor %}
         {% else %}
-          <p>There are no reviews for this album. Create one?</p>
+          <p>There are no reviews for this album. <a href="#">Create one?</a></p>
         {% endif %}
       </div>
     </section>
     <aside id="sidebar" class="col-sm-3 bg-body-tertiary rounded-3 p-3">
+      <button id="write-review" class="btn btn-primary d-block w-100 mb-3" type="button">
+        Write a review
+      </button>
+
       <form class="mb-3">
         <label>Sort by...</label>
         <select class="form-select" aria-label="Default select example">
