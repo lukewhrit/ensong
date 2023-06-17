@@ -8,7 +8,7 @@ class Artist(models.Model):
     mbid = models.UUIDField(_("MusicBrainz ID"), primary_key=True, blank=False, max_length=36)
 
     name = models.CharField(_("artist name"), max_length=255)
-    image = models.ImageField(_("image of artist"))
+    image = models.ImageField(_("image of artist"), blank=True)
 
     def __str__(self):
         return self.name
