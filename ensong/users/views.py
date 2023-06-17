@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db import models
 from django.urls import reverse
 from ensong.music.models import Review
 from django.utils.translation import gettext_lazy as _
@@ -26,7 +25,7 @@ user_detail_view = UserDetailView.as_view()
 
 class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
-    fields = ["name", "avatar"]
+    fields = ["name", "avatar", "about"]
     success_message = _("Information successfully updated")
 
     def get_success_url(self):
