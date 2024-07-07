@@ -1,3 +1,5 @@
+import uuid
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -42,6 +44,8 @@ class Album(models.Model):
 
 
 class Review(models.Model):
+    id = models.UUIDField(_("Review ID"), primary_key=True, unique=True, default=uuid.uuid4, max_length=36)
+
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     stars = models.PositiveIntegerField(_("star rating"), validators=[MaxValueValidator(5), MinValueValidator(1)])
     album = models.ForeignKey(Album, on_delete=models.CASCADE)

@@ -1,3 +1,17 @@
+# Contributing
+
+## Running the Codebase
+
+Ensong is based on [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django). You must have Docker installed to run or develop Ensong as all the tools used are included in a Docker Compose image, including PostgreSQL, Mailhog, Celery/Flower, and Redis.
+
+```
+$ docker-compose up -d --build
+$ docker-compose -f local.yml run python manage.py migrate
+$ docker-compose -f local.yml run python manage.py createsuperuser
+```
+
+Additionally, if you are not completely proficient in the Docker CLI it is useful to install Docker Desktop to view your images and their console outputs.
+
 ## Basic Commands
 
 ### Setting Up Your Users
@@ -6,7 +20,7 @@
 
 - To create a **superuser account**, use this command:
 
-      $ python manage.py createsuperuser
+      $ docker-compose -f local.yml run python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -14,7 +28,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy ensong
+    $ docker-compose -f local.yml run django mypy ensong
 
 ### Test coverage
 
@@ -26,38 +40,11 @@ To run the tests, check your test coverage, and generate an HTML coverage report
 
 #### Running tests with pytest
 
-    $ pytest
+    $ docker-compose -f local.yml run pytest
 
 ### Live reloading and Sass CSS compilation
 
 Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker:
-
-```bash
-cd ensong
-celery -A config.celery_app worker -l info
-```
-
-Please note: For Celery's import magic to work, it is important _where_ the celery commands are run. If you are in the same folder with _manage.py_, you should be right.
-
-To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
-
-```bash
-cd ensong
-celery -A config.celery_app beat
-```
-
-or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
-
-```bash
-cd ensong
-celery -A config.celery_app worker -B -l info
-```
 
 ### Email Server
 
